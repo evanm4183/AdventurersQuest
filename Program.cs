@@ -43,15 +43,19 @@ namespace Quest
             int maxAwesomeness = 100;
 
             Robe adventurersRobe = new Robe();
-            adventurersRobe.Length = 10;
+            adventurersRobe.Length = 15;
             adventurersRobe.Colors.Add("red");
             adventurersRobe.Colors.Add("green");
+
+            Hat adventurersHat = new Hat();
+            adventurersHat.ShininessLevel = 20;
+            //Console.WriteLine(adventurersHat.ShininessLevel);
             
             // Make a new "Adventurer" object using the "Adventurer" class
             Console.WriteLine("What is your name?");
             string name = Console.ReadLine();
 
-            Adventurer theAdventurer = new Adventurer(name, adventurersRobe);
+            Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.

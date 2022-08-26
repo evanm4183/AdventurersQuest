@@ -12,6 +12,7 @@ namespace Quest
         //  So it can be read and changed by any code in the application
         public int Awesomeness { get; set; }
         private Robe _colorfulRobe = new Robe();
+        public Hat Hat = new Hat();
 
         // A constructor to make a new Adventurer object with a given name
         public Adventurer(string name)
@@ -20,11 +21,12 @@ namespace Quest
             Awesomeness = 50;
         }
 
-        public Adventurer(string name, Robe robe)
+        public Adventurer(string name, Robe robe, Hat hat)
         {
             Name = name;
             Awesomeness = 50;
             _colorfulRobe = robe;
+            Hat = hat;
         }
 
         // This method returns a string that describes the Adventurer's status
@@ -66,7 +68,10 @@ namespace Quest
                     description += $"{_colorfulRobe.Colors[i]} ";
             }
 
-            return description += $"that is {_colorfulRobe.Length} units long";
+            description += $"that is {_colorfulRobe.Length} units long. ";
+            description += $"They also have a {Hat.ShininessDescription} hat.";
+
+            return description;
         }
     }
 }
