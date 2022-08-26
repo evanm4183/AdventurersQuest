@@ -16,12 +16,12 @@ namespace Quest
             //   a number of awesome points to gain or lose depending on the success of the challenge
             Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10);
             Challenge theAnswer = new Challenge(
-                "What's the answer to life, the universe and everything?", 42, 25);
+                "What's the answer to life, the universe and everything?", 42, 25); 
             Challenge whatSecond = new Challenge(
-                "What is the current second?", DateTime.Now.Second, 50);
+                "What is the current second?", DateTime.Now.Second, 50); 
 
             int randomNumber = new Random().Next() % 10;
-            Challenge guessRandom = new Challenge("What number am I thinking of?", randomNumber, 25);
+            Challenge guessRandom = new Challenge("What number am I thinking of?", randomNumber, 25); 
 
             Challenge favoriteBeatle = new Challenge(
                 @"Who's your favorite Beatle?
@@ -31,7 +31,7 @@ namespace Quest
     4) Ringo
 ",
                 4, 20
-            );
+            ); 
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -49,7 +49,8 @@ namespace Quest
 
             Hat adventurersHat = new Hat();
             adventurersHat.ShininessLevel = 20;
-            //Console.WriteLine(adventurersHat.ShininessLevel);
+            
+            Prize adventurersPrize = new Prize("Buried Treasure");
             
             // Make a new "Adventurer" object using the "Adventurer" class
             Console.WriteLine("What is your name?");
@@ -97,8 +98,12 @@ namespace Quest
                 }
 
                 Console.WriteLine("------------------------------------");
+                adventurersPrize.ShowPrize(theAdventurer);
+
+                Console.WriteLine("------------------------------------");
                 Console.WriteLine("Would you like to repeat the Quest (type \"yes\" to repeat)?");
                 playAgain = Console.ReadLine().ToLower();
+                
             } while (playAgain == "yes");
         }
     }
