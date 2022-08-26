@@ -42,11 +42,16 @@ namespace Quest
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
 
+            Robe adventurersRobe = new Robe();
+            adventurersRobe.Length = 10;
+            adventurersRobe.Colors.Add("red");
+            adventurersRobe.Colors.Add("green");
+            
             // Make a new "Adventurer" object using the "Adventurer" class
             Console.WriteLine("What is your name?");
             string name = Console.ReadLine();
 
-            Adventurer theAdventurer = new Adventurer(name);
+            Adventurer theAdventurer = new Adventurer(name, adventurersRobe);
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
@@ -63,6 +68,9 @@ namespace Quest
 
             do
             {
+                Console.WriteLine(theAdventurer.GetDescription());
+                Console.WriteLine("------------------------------------");
+
                 // Loop through all the challenges and subject the Adventurer to them
                 foreach (Challenge challenge in challenges)
                 {
