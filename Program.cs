@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // Every class in the program is defined within the "Quest" namespace
 // Classes within the same namespace refer to one another without a "using" statement
@@ -32,6 +33,8 @@ namespace Quest
 ",
                 4, 20
             ); 
+            Challenge twoSquared = new Challenge("What is 2 squared?", 4, 10);
+            Challenge sqrtFour = new Challenge("What is the sqrt of 4?", 2, 10);
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -66,7 +69,9 @@ namespace Quest
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                twoSquared,
+                sqrtFour
             };
 
             string playAgain;
@@ -76,10 +81,20 @@ namespace Quest
                 Console.WriteLine(theAdventurer.GetDescription());
                 Console.WriteLine("------------------------------------");
 
-                // Loop through all the challenges and subject the Adventurer to them
-                foreach (Challenge challenge in challenges)
+                // Creates a list of ints 0 to the last index of challenges
+                List<int> possibleNums = new List<int>();
+                for (int i = 0; i < challenges.Count; i++)
                 {
-                    challenge.RunChallenge(theAdventurer);
+                    possibleNums.Add(i);
+                }
+
+                // Loop through all the challenges and subject the Adventurer to them
+                for (int i = 0; i < 5; i++)
+                {
+                    int index = possibleNums[new Random().Next(0, possibleNums.Count)];
+                    possibleNums.Remove(index);
+
+                    challenges[index].RunChallenge(theAdventurer);
                 }
 
                 // This code examines how Awesome the Adventurer is after completing the challenges
@@ -103,6 +118,7 @@ namespace Quest
                 Console.WriteLine("------------------------------------");
                 Console.WriteLine("Would you like to repeat the Quest (type \"yes\" to repeat)?");
                 playAgain = Console.ReadLine().ToLower();
+                
                 
             } while (playAgain == "yes");
         }
