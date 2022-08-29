@@ -15,9 +15,9 @@ namespace Quest
             //   the text of the challenge
             //   a correct answer
             //   a number of awesome points to gain or lose depending on the success of the challenge
-            Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10);
+            Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10); 
             Challenge theAnswer = new Challenge(
-                "What's the answer to life, the universe and everything?", 42, 25); 
+                "What's the answer to life, the universe and everything?", 42, 24); 
             Challenge whatSecond = new Challenge(
                 "What is the current second?", DateTime.Now.Second, 50); 
 
@@ -33,8 +33,8 @@ namespace Quest
 ",
                 4, 20
             ); 
-            Challenge twoSquared = new Challenge("What is 2 squared?", 4, 10);
-            Challenge sqrtFour = new Challenge("What is the sqrt of 4?", 2, 10);
+            Challenge twoSquared = new Challenge("What is 2 squared?", 4, 4); 
+            Challenge sqrtFour = new Challenge("What is the sqrt of 4?", 2, 2); 
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -75,9 +75,13 @@ namespace Quest
             };
 
             string playAgain;
+            int numCorrect;
 
             do
             {
+                numCorrect = 0;
+                Console.WriteLine($"Initial Awesomeness = {theAdventurer.Awesomeness}");
+
                 Console.WriteLine(theAdventurer.GetDescription());
                 Console.WriteLine("------------------------------------");
 
@@ -94,7 +98,7 @@ namespace Quest
                     int index = possibleNums[new Random().Next(0, possibleNums.Count)];
                     possibleNums.Remove(index);
 
-                    challenges[index].RunChallenge(theAdventurer);
+                    numCorrect += challenges[index].RunChallenge(theAdventurer);
                 }
 
                 // This code examines how Awesome the Adventurer is after completing the challenges
@@ -119,7 +123,7 @@ namespace Quest
                 Console.WriteLine("Would you like to repeat the Quest (type \"yes\" to repeat)?");
                 playAgain = Console.ReadLine().ToLower();
                 
-                
+                theAdventurer.Awesomeness += numCorrect * 10;
             } while (playAgain == "yes");
         }
     }
